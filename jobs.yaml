@@ -1,7 +1,7 @@
 jobs:
   - name: test
-    hookUrl: /test
-    command: ['wget','http://baidu.com']
+    url: /test
+    command: [date,-h]
   - name: test2
-    hookUrl: /test2
-    command: ['echo','test2','>','test2.txt']
+    url: /test2
+    command: [touch,test2.txt]
