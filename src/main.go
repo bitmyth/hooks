@@ -25,7 +25,7 @@ func main() {
     }
 
     d, _ := yaml.Marshal(&jobs)
-    fmt.Printf("load jobs:\n%s\n\n", string(d))
+    fmt.Printf("Loaded jobs:\n---\n%s\n", string(d))
 
     handler := hook.MakeHandler(jobs)
     for _, job := range jobs.Jobs {
