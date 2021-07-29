@@ -15,6 +15,7 @@ var jobs *job.Jobs
 
 func main() {
     file := os.Getenv("FILE")
+    port := load.Default(os.Getenv("PORT"), "8000")
 
     data := load.Load(file)
 
@@ -31,5 +32,5 @@ func main() {
         http.HandleFunc(job.Url, handler)
     }
 
-    log.Fatal(http.ListenAndServe("0.0.0.0:8000", nil))
+    log.Fatal(http.ListenAndServe(fmt.Sprintf("0.0.0.0:%s", port), nil))
 }
