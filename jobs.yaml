@@ -1,7 +1,7 @@
 jobs:
   - name: test
     url: /test
-    command: [echo,1,33,2,5]
+    command: [date,-h]
   - name: test2
     url: /test2
     command: [touch,test2.txt]
