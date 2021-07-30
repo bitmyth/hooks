@@ -1,0 +1,9 @@
+version: "3.3"
+
+services:
+  web:
+    image: nginx:alpine
+    volumes:
+    - ./public:/usr/share/nginx/html
+    ports:
+      - "7779:80"

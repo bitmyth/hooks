@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker on kaifalu</title>
+    <link>/tags/docker/</link>
+    <description>Recent content in docker on kaifalu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 23 Nov 2020 22:39:54 +0800</lastBuildDate><atom:link href="/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker</title>
+      <link>/posts/docker-insatll/</link>
+      <pubDate>Mon, 23 Nov 2020 22:39:54 +0800</pubDate>
+      
+      <guid>/posts/docker-insatll/</guid>
+      <description>docker 安装和基本配置</description>
+    </item>
+    
+    <item>
+      <title>octet 和 byte 有什么区别</title>
+      <link>/posts/octet-vs-byte/</link>
+      <pubDate>Mon, 23 Nov 2020 22:39:54 +0800</pubDate>
+      
+      <guid>/posts/octet-vs-byte/</guid>
+      <description>octet 和 byte 有什么区别</description>
+    </item>
+    
+  </channel>
+</rss>

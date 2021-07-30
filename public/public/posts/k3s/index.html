@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>kaifalu</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.82.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="../../dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+      <link rel="stylesheet" href="../../css/mystyles.css">
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="" />
+<meta property="og:description" content="k3s To install k3s as a service just run: $ curl -sfL https://get.k3s.io | sh - [INFO] Finding release for channel stable [INFO] Using v1.19.3&#43;k3s3 as release [INFO] Downloading hash https://github.com/rancher/k3s/releases/download/v1.19.3&#43;k3s3/sha256sum-amd64.txt [INFO] Downloading binary https://github.com/rancher/k3s/releases/download/v1.19.3&#43;k3s3/k3s [INFO] Verifying binary download [INFO] Installing k3s to /usr/local/bin/k3s [INFO] Skipping /usr/local/bin/kubectl symlink to k3s, command exists in PATH at /usr/bin/kubectl [INFO] Skipping /usr/local/bin/crictl symlink to k3s, command exists in PATH at /usr/bin/crictl [INFO] Skipping /usr/local/bin/ctr symlink to k3s, command exists in PATH at /usr/bin/ctr [INFO] Creating killall script /usr/local/bin/k3s-killall." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/k3s/" /><meta property="article:section" content="posts" />
+
+
+
+<meta itemprop="name" content="">
+<meta itemprop="description" content="k3s To install k3s as a service just run: $ curl -sfL https://get.k3s.io | sh - [INFO] Finding release for channel stable [INFO] Using v1.19.3&#43;k3s3 as release [INFO] Downloading hash https://github.com/rancher/k3s/releases/download/v1.19.3&#43;k3s3/sha256sum-amd64.txt [INFO] Downloading binary https://github.com/rancher/k3s/releases/download/v1.19.3&#43;k3s3/k3s [INFO] Verifying binary download [INFO] Installing k3s to /usr/local/bin/k3s [INFO] Skipping /usr/local/bin/kubectl symlink to k3s, command exists in PATH at /usr/bin/kubectl [INFO] Skipping /usr/local/bin/crictl symlink to k3s, command exists in PATH at /usr/bin/crictl [INFO] Skipping /usr/local/bin/ctr symlink to k3s, command exists in PATH at /usr/bin/ctr [INFO] Creating killall script /usr/local/bin/k3s-killall.">
+
+<meta itemprop="wordCount" content="3045">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="k3s To install k3s as a service just run: $ curl -sfL https://get.k3s.io | sh - [INFO] Finding release for channel stable [INFO] Using v1.19.3&#43;k3s3 as release [INFO] Downloading hash https://github.com/rancher/k3s/releases/download/v1.19.3&#43;k3s3/sha256sum-amd64.txt [INFO] Downloading binary https://github.com/rancher/k3s/releases/download/v1.19.3&#43;k3s3/k3s [INFO] Verifying binary download [INFO] Installing k3s to /usr/local/bin/k3s [INFO] Skipping /usr/local/bin/kubectl symlink to k3s, command exists in PATH at /usr/bin/kubectl [INFO] Skipping /usr/local/bin/crictl symlink to k3s, command exists in PATH at /usr/bin/crictl [INFO] Skipping /usr/local/bin/ctr symlink to k3s, command exists in PATH at /usr/bin/ctr [INFO] Creating killall script /usr/local/bin/k3s-killall."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+   
+
+  <header>
+    <div class="bg-black">
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand p-4">
+            <a href="../../" class="navbar-item">
+                
+                    <img src="https://static.kaifalu.com/static/images/1_WgYfacPv_template.png" width="112" height="28" alt="kaifalu"/>
+                
+            </a>
+
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+               data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="../../">
+                    Home
+                </a>
+
+                
+
+                
+                    
+                        <a class="navbar-item" href="../../about/" title="About page">
+                            About
+                        </a>
+                    
+                        <a class="navbar-item" href="../../posts/" title="Posts page">
+                            Posts
+                        </a>
+                    
+                
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        More
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="../../codemirror-5.58.3/demo/a.html#material">
+                            Code panel
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-end">
+                
+
+
+
+
+
+
+
+
+<div class="navbar-item">
+<a href="https://github.com/bitmyth" target="_blank" class="link-transition github link" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+</div>
+
+
+
+
+
+
+
+
+                <div class="navbar-item">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+        
+        if ($navbarBurgers.length > 0) {
+
+            
+            $navbarBurgers.forEach(el => {
+                el.addEventListener('click', () => {
+
+                    
+                    const target = el.dataset.target;
+                    const $target = document.getElementById(target);
+
+                    
+                    el.classList.toggle('is-active');
+                    $target.classList.toggle('is-active');
+
+                });
+            });
+        }
+
+    });
+</script>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=/posts/k3s/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=../../posts/k3s/&amp;text=" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=../../posts/k3s/&amp;title=" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1"></h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="0001-01-01T00:00:00Z">0001-01-01</time>
+
+      
+      
+        <span class="f6 mv4 dib tracked"> - 15 minutes read</span>
+        <span class="f6 mv4 dib tracked"> - 3045 words</span>
+      
+        <div class="container mb-5">  
+</div>
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h1 id="k3s">k3s</h1>
+<h2 id="to-install-k3s-as-a-service-just-run">To install k3s as a service just run:</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ curl -sfL https://get.k3s.io | sh -
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span>  Finding release <span style="color:#66d9ef">for</span> channel stable
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span>  Using v1.19.3+k3s3 as release
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span>  Downloading hash https://github.com/rancher/k3s/releases/download/v1.19.3+k3s3/sha256sum-amd64.txt
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span>  Downloading binary https://github.com/rancher/k3s/releases/download/v1.19.3+k3s3/k3s
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span>  Verifying binary download
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span>  Installing k3s to /usr/local/bin/k3s
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span>  Skipping /usr/local/bin/kubectl symlink to k3s, command exists in PATH at /usr/bin/kubectl
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span>  Skipping /usr/local/bin/crictl symlink to k3s, command exists in PATH at /usr/bin/crictl
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span>  Skipping /usr/local/bin/ctr symlink to k3s, command exists in PATH at /usr/bin/ctr
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span>  Creating killall script /usr/local/bin/k3s-killall.sh
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span>  Creating uninstall script /usr/local/bin/k3s-uninstall.sh
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span>  env: Creating environment file /etc/systemd/system/k3s.service.env
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span>  systemd: Creating service file /etc/systemd/system/k3s.service
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span>  systemd: Enabling k3s unit
+Created symlink /etc/systemd/system/multi-user.target.wants/k3s.service → /etc/systemd/system/k3s.service.
+<span style="color:#f92672">[</span>INFO<span style="color:#f92672">]</span>  systemd: Starting k3s
+</code></pre></div><h2 id="etcrancherk3sk3syaml">/etc/rancher/k3s/k3s.yaml</h2>
+<p>A kubeconfig file is written to <code>/etc/rancher/k3s/k3s.yaml</code> and the service is automatically started or restarted. The install script will install K3s and additional utilities, such as <code>kubectl</code>, <code>crictl</code>, <code>k3s-killall.sh</code>, and <code>k3s-uninstall.sh</code>, for example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo cat /etc/rancher/k3s/k3s.yaml
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJkekNDQVIyZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQWpNU0V3SHdZRFZRUUREQmhyTTNNdGMyVnkKZG1WeUxXTmhRREUyTURZM01qZzBOVGd3SGhjTk1qQXhNVE13TURreU56TTRXaGNOTXpBeE1USTRNRGt5TnpNNApXakFqTVNFd0h3WURWUVFEREJock0zTXRjMlZ5ZG1WeUxXTmhRREUyTURZM01qZzBOVGd3V1RBVEJnY3Foa2pPClBRSUJCZ2dxaGtqT1BRTUJCd05DQUFRRFF2SG8wZm5Fa2kwRVJVMzcxUUdJMHhYajMySnpkczc4ZWFDR0VLNGYKTUtlRVhEL1ZHRHB2aHZOOFlNK0cxei9XV3ZQTzdTdTdIR1JsVFMwTVNzMjNvMEl3UURBT0JnTlZIUThCQWY4RQpCQU1DQXFRd0R3WURWUjBUQVFIL0JBVXdBd0VCL3pBZEJnTlZIUTRFRmdRVS96anI2YzFoWmt1a2RjOEJNbmNzCnN0SGErZ013Q2dZSUtvWkl6ajBFQXdJRFNBQXdSUUlnUDBZVWdmVXo4WlVSdmp0clF1R0RUejB3SHcxVGVRSEwKNU1CWlFrU3JSVmdDSVFDR1M0OWVOUUdCY1JVNXl2S2pmNG40Ymo4a090VHovZ1FjTEZvblNCTDNSQT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    server: https://127.0.0.1:6443
+  name: default
+contexts:
+- context:
+    cluster: default
+    user: default
+  name: default
+current-context: default
+kind: Config
+preferences: <span style="color:#f92672">{}</span>
+users:
+- name: default
+  user:
+    client-certificate-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJrRENDQVRlZ0F3SUJBZ0lJQW14VUdYS1ZXbjR3Q2dZSUtvWkl6ajBFQXdJd0l6RWhNQjhHQTFVRUF3d1kKYXpOekxXTnNhV1Z1ZEMxallVQXhOakEyTnpJNE5EVTRNQjRYRFRJd01URXpNREE1TWpjek9Gb1hEVEl4TVRFegpNREE1TWpjek9Gb3dNREVYTUJVR0ExVUVDaE1PYzNsemRHVnRPbTFoYzNSbGNuTXhGVEFUQmdOVkJBTVRESE41CmMzUmxiVHBoWkcxcGJqQlpNQk1HQnlxR1NNNDlBZ0VHQ0NxR1NNNDlBd0VIQTBJQUJCVGZVVk5ydFJhN09hRUQKb3pDSmFRWWNXSTc3VEdWdFFSejNXNUFFcWlycjJRZnJkeWlnVnNBUnRjNEdiMHRoOVY5Z3ZjaDFBZG90TzNWTQp6eTF3SHdDalNEQkdNQTRHQTFVZER3RUIvd1FFQXdJRm9EQVRCZ05WSFNVRUREQUtCZ2dyQmdFRkJRY0RBakFmCkJnTlZIU01FR0RBV2dCUVZhN1JRL1d4aHYrbHMwbFRGOFJrY0hvZnVHekFLQmdncWhrak9QUVFEQWdOSEFEQkUKQWlBZDU0RHhveFIrYzJQSkJQd213eFd3SEhVdHhtY3dqcXIyMXpGeTNpUGlBUUlnYjd0SXZCcjRvb2JWVmpmLwpqR01UcUFZZnovWDVXbU9HUnF6dExFVnhBODQ9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KLS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJkekNDQVIyZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQWpNU0V3SHdZRFZRUUREQmhyTTNNdFkyeHAKWlc1MExXTmhRREUyTURZM01qZzBOVGd3SGhjTk1qQXhNVE13TURreU56TTRXaGNOTXpBeE1USTRNRGt5TnpNNApXakFqTVNFd0h3WURWUVFEREJock0zTXRZMnhwWlc1MExXTmhRREUyTURZM01qZzBOVGd3V1RBVEJnY3Foa2pPClBRSUJCZ2dxaGtqT1BRTUJCd05DQUFUN1EvclE2aUlpaE9zWER4REI3M0pjWjhHMzhUMVE1VkhMdWtINGpRcU4KNklwRzN0Q0dDdWRFVGl6anJhYVhtYzU5dlZJaFRrZVA0UVp1bDM5UHFSUm9vMEl3UURBT0JnTlZIUThCQWY4RQpCQU1DQXFRd0R3WURWUjBUQVFIL0JBVXdBd0VCL3pBZEJnTlZIUTRFRmdRVUZXdTBVUDFzWWIvcGJOSlV4ZkVaCkhCNkg3aHN3Q2dZSUtvWkl6ajBFQXdJRFNBQXdSUUlnSGZ1VU5tdUFzMzFVZ2c2dU9KV1ZzMzlVSHBQOUc5NXUKMjFtdVlIQTFvV0FDSVFES0VWU0dNbEczU1gyaHFPNzhnZmZRTkx4SHhqck95UW4rTTdFNDB4Z2I0UT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    client-key-data: LS0tLS1CRUdJTiBFQyBQUklWQVRFIEtFWS0tLS0tCk1IY0NBUUVFSUtjMm9Oam51MjFtcWhmNXF4RFJHdk5yL0ZLald1MmVsUXFhaGFzWWt3b2dvQW9HQ0NxR1NNNDkKQXdFSG9VUURRZ0FFRk45UlUydTFGcnM1b1FPak1JbHBCaHhZanZ0TVpXMUJIUGRia0FTcUt1dlpCK3QzS0tCVwp3QkcxemdadlMySDFYMkM5eUhVQjJpMDdkVXpQTFhBZkFBPT0KLS0tLS1FTkQgRUMgUFJJVkFURSBLRVktLS0tLQo<span style="color:#f92672">=</span>
+</code></pre></div><h2 id="k3s_token">K3S_TOKEN</h2>
+<p><code>K3S_TOKEN</code> is created at <code>/var/lib/rancher/k3s/server/node-token</code> on your server</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo cat /var/lib/rancher/k3s/server/node-token
+K10508aa813eb8ae4d13e7a3d008a731e68a0fe50d8216dddf73b97f12bde0f4498::server:dbf644c88539ccd50a408ac78642de49
+</code></pre></div><h2 id="k3s-install">k3s install</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e">#!/bin/sh
+</span><span style="color:#75715e"></span>set -e
+
+<span style="color:#75715e"># Usage:</span>
+<span style="color:#75715e">#   curl ... | ENV_VAR=... sh -</span>
+<span style="color:#75715e">#       or</span>
+<span style="color:#75715e">#   ENV_VAR=... ./install.sh</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># Example:</span>
+<span style="color:#75715e">#   Installing a server without traefik:</span>
+<span style="color:#75715e">#     curl ... | INSTALL_K3S_EXEC=&#34;--disable=traefik&#34; sh -</span>
+<span style="color:#75715e">#   Installing an agent to point at a server:</span>
+<span style="color:#75715e">#     curl ... | K3S_TOKEN=xxx K3S_URL=https://server-url:6443 sh -</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># Environment variables:</span>
+<span style="color:#75715e">#   - K3S_*</span>
+<span style="color:#75715e">#     Environment variables which begin with K3S_ will be preserved for the</span>
+<span style="color:#75715e">#     systemd service to use. Setting K3S_URL without explicitly setting</span>
+<span style="color:#75715e">#     a systemd exec command will default the command to &#34;agent&#34;, and we</span>
+<span style="color:#75715e">#     enforce that K3S_TOKEN or K3S_CLUSTER_SECRET is also set.</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_SKIP_DOWNLOAD</span>
+<span style="color:#75715e">#     If set to true will not download k3s hash or binary.</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_SYMLINK</span>
+<span style="color:#75715e">#     If set to &#39;skip&#39; will not create symlinks, &#39;force&#39; will overwrite,</span>
+<span style="color:#75715e">#     default will symlink if command does not exist in path.</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_SKIP_ENABLE</span>
+<span style="color:#75715e">#     If set to true will not enable or start k3s service.</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_SKIP_START</span>
+<span style="color:#75715e">#     If set to true will not start k3s service.</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_VERSION</span>
+<span style="color:#75715e">#     Version of k3s to download from github. Will attempt to download from the</span>
+<span style="color:#75715e">#     stable channel if not specified.</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_COMMIT</span>
+<span style="color:#75715e">#     Commit of k3s to download from temporary cloud storage.</span>
+<span style="color:#75715e">#     * (for developer &amp; QA use)</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_BIN_DIR</span>
+<span style="color:#75715e">#     Directory to install k3s binary, links, and uninstall script to, or use</span>
+<span style="color:#75715e">#     /usr/local/bin as the default</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_BIN_DIR_READ_ONLY</span>
+<span style="color:#75715e">#     If set to true will not write files to INSTALL_K3S_BIN_DIR, forces</span>
+<span style="color:#75715e">#     setting INSTALL_K3S_SKIP_DOWNLOAD=true</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_SYSTEMD_DIR</span>
+<span style="color:#75715e">#     Directory to install systemd service and environment files to, or use</span>
+<span style="color:#75715e">#     /etc/systemd/system as the default</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_EXEC or script arguments</span>
+<span style="color:#75715e">#     Command with flags to use for launching k3s in the systemd service, if</span>
+<span style="color:#75715e">#     the command is not specified will default to &#34;agent&#34; if K3S_URL is set</span>
+<span style="color:#75715e">#     or &#34;server&#34; if not. The final systemd command resolves to a combination</span>
+<span style="color:#75715e">#     of EXEC and script args ($@).</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#     The following commands result in the same behavior:</span>
+<span style="color:#75715e">#       curl ... | INSTALL_K3S_EXEC=&#34;--disable=traefik&#34; sh -s -</span>
+<span style="color:#75715e">#       curl ... | INSTALL_K3S_EXEC=&#34;server --disable=traefik&#34; sh -s -</span>
+<span style="color:#75715e">#       curl ... | INSTALL_K3S_EXEC=&#34;server&#34; sh -s - --disable=traefik</span>
+<span style="color:#75715e">#       curl ... | sh -s - server --disable=traefik</span>
+<span style="color:#75715e">#       curl ... | sh -s - --disable=traefik</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_NAME</span>
+<span style="color:#75715e">#     Name of systemd service to create, will default from the k3s exec command</span>
+<span style="color:#75715e">#     if not specified. If specified the name will be prefixed with &#39;k3s-&#39;.</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_TYPE</span>
+<span style="color:#75715e">#     Type of systemd service to create, will default from the k3s exec command</span>
+<span style="color:#75715e">#     if not specified.</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_SELINUX_WARN</span>
+<span style="color:#75715e">#     If set to true will continue if k3s-selinux policy is not found.</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_SKIP_SELINUX_RPM</span>
+<span style="color:#75715e">#     If set to true will skip automatic installation of the k3s RPM.</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_CHANNEL_URL</span>
+<span style="color:#75715e">#     Channel URL for fetching k3s download URL.</span>
+<span style="color:#75715e">#     Defaults to &#39;https://update.k3s.io/v1-release/channels&#39;.</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e">#   - INSTALL_K3S_CHANNEL</span>
+<span style="color:#75715e">#     Channel to use for fetching k3s download URL.</span>
+<span style="color:#75715e">#     Defaults to &#39;stable&#39;.</span>
+
+GITHUB_URL<span style="color:#f92672">=</span>https://github.com/rancher/k3s/releases
+STORAGE_URL<span style="color:#f92672">=</span>https://storage.googleapis.com/k3s-ci-builds
+DOWNLOADER<span style="color:#f92672">=</span>
+
+<span style="color:#75715e"># --- helper functions for logs ---</span>
+info<span style="color:#f92672">()</span>
+<span style="color:#f92672">{</span>
+    echo <span style="color:#e6db74">&#39;[INFO] &#39;</span> <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span>
+<span style="color:#f92672">}</span>
+warn<span style="color:#f92672">()</span>
+<span style="color:#f92672">{</span>
+    echo <span style="color:#e6db74">&#39;[WARN] &#39;</span> <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span> &gt;&amp;<span style="color:#ae81ff">2</span>
+<span style="color:#f92672">}</span>
+fatal<span style="color:#f92672">()</span>
+<span style="color:#f92672">{</span>
+    echo <span style="color:#e6db74">&#39;[ERROR] &#39;</span> <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span> &gt;&amp;<span style="color:#ae81ff">2</span>
+    exit <span style="color:#ae81ff">1</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- fatal if no systemd or openrc ---</span>
+verify_system<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -x /sbin/openrc-run <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        HAS_OPENRC<span style="color:#f92672">=</span>true
+        <span style="color:#66d9ef">return</span>
+    <span style="color:#66d9ef">fi</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -d /run/systemd <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        HAS_SYSTEMD<span style="color:#f92672">=</span>true
+        <span style="color:#66d9ef">return</span>
+    <span style="color:#66d9ef">fi</span>
+    fatal <span style="color:#e6db74">&#39;Can not find systemd or openrc to use as a process supervisor for k3s&#39;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- add quotes to command arguments ---</span>
+quote<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">for</span> arg in <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span>; <span style="color:#66d9ef">do</span>
+        printf <span style="color:#e6db74">&#39;%s\n&#39;</span> <span style="color:#e6db74">&#34;</span>$arg<span style="color:#e6db74">&#34;</span> | sed <span style="color:#e6db74">&#34;s/&#39;/&#39;\\\\&#39;&#39;/g;1s/^/&#39;/;\$s/\$/&#39;/&#34;</span>
+    <span style="color:#66d9ef">done</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- add indentation and trailing slash to quoted args ---</span>
+quote_indent<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    printf <span style="color:#e6db74">&#39; \\\n&#39;</span>
+    <span style="color:#66d9ef">for</span> arg in <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span>; <span style="color:#66d9ef">do</span>
+        printf <span style="color:#e6db74">&#39;\t%s \\\n&#39;</span> <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>quote <span style="color:#e6db74">&#34;</span>$arg<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+    <span style="color:#66d9ef">done</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- escape most punctuation characters, except quotes, forward slash, and space ---</span>
+escape<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    printf <span style="color:#e6db74">&#39;%s&#39;</span> <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span> | sed -e <span style="color:#e6db74">&#39;s/\([][!#$%&amp;()*;&lt;=&gt;?\_`{|}]\)/\\\1/g;&#39;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- escape double quotes ---</span>
+escape_dq<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    printf <span style="color:#e6db74">&#39;%s&#39;</span> <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span> | sed -e <span style="color:#e6db74">&#39;s/&#34;/\\&#34;/g&#39;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- ensures $K3S_URL is empty or begins with https://, exiting fatally otherwise ---</span>
+verify_k3s_url<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>K3S_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> in
+        <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">)</span>
+            ;;
+        https://*<span style="color:#f92672">)</span>
+            ;;
+        *<span style="color:#f92672">)</span>
+            fatal <span style="color:#e6db74">&#34;Only https:// URLs are supported for K3S_URL (have </span><span style="color:#e6db74">${</span>K3S_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">)&#34;</span>
+            ;;
+    <span style="color:#66d9ef">esac</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- define needed environment variables ---</span>
+setup_env<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e"># --- use command args if passed or create default ---</span>
+    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> in
+        <span style="color:#75715e"># --- if we only have flags discover if command should be server or agent ---</span>
+        <span style="color:#f92672">(</span>-*|<span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">)</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>K3S_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+                CMD_K3S<span style="color:#f92672">=</span>server
+            <span style="color:#66d9ef">else</span>
+                <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>K3S_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>K3S_TOKEN_FILE<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>K3S_CLUSTER_SECRET<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+                    fatal <span style="color:#e6db74">&#34;Defaulted k3s exec command to &#39;agent&#39; because K3S_URL is defined, but K3S_TOKEN, K3S_TOKEN_FILE or K3S_CLUSTER_SECRET is not defined.&#34;</span>
+                <span style="color:#66d9ef">fi</span>
+                CMD_K3S<span style="color:#f92672">=</span>agent
+            <span style="color:#66d9ef">fi</span>
+        ;;
+        <span style="color:#75715e"># --- command is provided ---</span>
+        <span style="color:#f92672">(</span>*<span style="color:#f92672">)</span>
+            CMD_K3S<span style="color:#f92672">=</span>$1
+            shift
+        ;;
+    <span style="color:#66d9ef">esac</span>
+
+    verify_k3s_url
+
+    CMD_K3S_EXEC<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CMD_K3S<span style="color:#e6db74">}</span><span style="color:#66d9ef">$(</span>quote_indent <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+
+    <span style="color:#75715e"># --- use systemd name if defined or create default ---</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_NAME<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        SYSTEM_NAME<span style="color:#f92672">=</span>k3s-<span style="color:#e6db74">${</span>INSTALL_K3S_NAME<span style="color:#e6db74">}</span>
+    <span style="color:#66d9ef">else</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CMD_K3S<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> server <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+            SYSTEM_NAME<span style="color:#f92672">=</span>k3s
+        <span style="color:#66d9ef">else</span>
+            SYSTEM_NAME<span style="color:#f92672">=</span>k3s-<span style="color:#e6db74">${</span>CMD_K3S<span style="color:#e6db74">}</span>
+        <span style="color:#66d9ef">fi</span>
+    <span style="color:#66d9ef">fi</span>
+
+    <span style="color:#75715e"># --- check for invalid characters in system name ---</span>
+    valid_chars<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>printf <span style="color:#e6db74">&#39;%s&#39;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> | sed -e <span style="color:#e6db74">&#39;s/[][!#$%&amp;()*;&lt;=&gt;?\_`{|}/[:space:]]/^/g;&#39;</span> <span style="color:#66d9ef">)</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> !<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>valid_chars<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>  <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        invalid_chars<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>printf <span style="color:#e6db74">&#39;%s&#39;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>valid_chars<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> | sed -e <span style="color:#e6db74">&#39;s/[^^]/ /g&#39;</span><span style="color:#66d9ef">)</span>
+        fatal <span style="color:#e6db74">&#34;Invalid characters for system name:
+</span><span style="color:#e6db74">            </span><span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">            </span><span style="color:#e6db74">${</span>invalid_chars<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+    <span style="color:#66d9ef">fi</span>
+
+    <span style="color:#75715e"># --- use sudo if we are not already root ---</span>
+    SUDO<span style="color:#f92672">=</span>sudo
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#66d9ef">$(</span>id -u<span style="color:#66d9ef">)</span> -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        SUDO<span style="color:#f92672">=</span>
+    <span style="color:#66d9ef">fi</span>
+
+    <span style="color:#75715e"># --- use systemd type if defined or create default ---</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_TYPE<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        SYSTEMD_TYPE<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>INSTALL_K3S_TYPE<span style="color:#e6db74">}</span>
+    <span style="color:#66d9ef">else</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>CMD_K3S<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> server <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+            SYSTEMD_TYPE<span style="color:#f92672">=</span>notify
+        <span style="color:#66d9ef">else</span>
+            SYSTEMD_TYPE<span style="color:#f92672">=</span>exec
+        <span style="color:#66d9ef">fi</span>
+    <span style="color:#66d9ef">fi</span>
+
+    <span style="color:#75715e"># --- use binary install directory if defined or create default ---</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_BIN_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        BIN_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>INSTALL_K3S_BIN_DIR<span style="color:#e6db74">}</span>
+    <span style="color:#66d9ef">else</span>
+        BIN_DIR<span style="color:#f92672">=</span>/usr/local/bin
+    <span style="color:#66d9ef">fi</span>
+
+    <span style="color:#75715e"># --- use systemd directory if defined or create default ---</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_SYSTEMD_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        SYSTEMD_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_SYSTEMD_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+    <span style="color:#66d9ef">else</span>
+        SYSTEMD_DIR<span style="color:#f92672">=</span>/etc/systemd/system
+    <span style="color:#66d9ef">fi</span>
+
+    <span style="color:#75715e"># --- set related files from system name ---</span>
+    SERVICE_K3S<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span>.service
+    UNINSTALL_K3S_SH<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>UNINSTALL_K3S_SH<span style="color:#66d9ef">:-</span><span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span>/<span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span>-uninstall.sh<span style="color:#e6db74">}</span>
+    KILLALL_K3S_SH<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>KILLALL_K3S_SH<span style="color:#66d9ef">:-</span><span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span>/k3s-killall.sh<span style="color:#e6db74">}</span>
+
+    <span style="color:#75715e"># --- use service or environment location depending on systemd/openrc ---</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HAS_SYSTEMD<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        FILE_K3S_SERVICE<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>SYSTEMD_DIR<span style="color:#e6db74">}</span>/<span style="color:#e6db74">${</span>SERVICE_K3S<span style="color:#e6db74">}</span>
+        FILE_K3S_ENV<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>SYSTEMD_DIR<span style="color:#e6db74">}</span>/<span style="color:#e6db74">${</span>SERVICE_K3S<span style="color:#e6db74">}</span>.env
+    <span style="color:#66d9ef">elif</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HAS_OPENRC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        $SUDO mkdir -p /etc/rancher/k3s
+        FILE_K3S_SERVICE<span style="color:#f92672">=</span>/etc/init.d/<span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span>
+        FILE_K3S_ENV<span style="color:#f92672">=</span>/etc/rancher/k3s/<span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span>.env
+    <span style="color:#66d9ef">fi</span>
+
+    <span style="color:#75715e"># --- get hash of config &amp; exec for currently installed k3s ---</span>
+    PRE_INSTALL_HASHES<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>get_installed_hashes<span style="color:#66d9ef">)</span>
+
+    <span style="color:#75715e"># --- if bin directory is read only skip download ---</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_BIN_DIR_READ_ONLY<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        INSTALL_K3S_SKIP_DOWNLOAD<span style="color:#f92672">=</span>true
+    <span style="color:#66d9ef">fi</span>
+
+    <span style="color:#75715e"># --- setup channel values</span>
+    INSTALL_K3S_CHANNEL_URL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>INSTALL_K3S_CHANNEL_URL<span style="color:#66d9ef">:-</span><span style="color:#e6db74">&#39;https://update.k3s.io/v1-release/channels&#39;</span><span style="color:#e6db74">}</span>
+    INSTALL_K3S_CHANNEL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>INSTALL_K3S_CHANNEL<span style="color:#66d9ef">:-</span><span style="color:#e6db74">&#39;stable&#39;</span><span style="color:#e6db74">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- check if skip download environment variable set ---</span>
+can_skip_download<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_SKIP_DOWNLOAD<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> !<span style="color:#f92672">=</span> true <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">fi</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- verify an executabe k3s binary is installed ---</span>
+verify_k3s_is_executable<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> ! -x <span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span>/k3s <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        fatal <span style="color:#e6db74">&#34;Executable k3s binary not found at </span><span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/k3s&#34;</span>
+    <span style="color:#66d9ef">fi</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- set arch and suffix, fatal if architecture not supported ---</span>
+setup_verify_arch<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span>$ARCH<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        ARCH<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>uname -m<span style="color:#66d9ef">)</span>
+    <span style="color:#66d9ef">fi</span>
+    <span style="color:#66d9ef">case</span> $ARCH in
+        amd64<span style="color:#f92672">)</span>
+            ARCH<span style="color:#f92672">=</span>amd64
+            SUFFIX<span style="color:#f92672">=</span>
+            ;;
+        x86_64<span style="color:#f92672">)</span>
+            ARCH<span style="color:#f92672">=</span>amd64
+            SUFFIX<span style="color:#f92672">=</span>
+            ;;
+        arm64<span style="color:#f92672">)</span>
+            ARCH<span style="color:#f92672">=</span>arm64
+            SUFFIX<span style="color:#f92672">=</span>-<span style="color:#e6db74">${</span>ARCH<span style="color:#e6db74">}</span>
+            ;;
+        aarch64<span style="color:#f92672">)</span>
+            ARCH<span style="color:#f92672">=</span>arm64
+            SUFFIX<span style="color:#f92672">=</span>-<span style="color:#e6db74">${</span>ARCH<span style="color:#e6db74">}</span>
+            ;;
+        arm*<span style="color:#f92672">)</span>
+            ARCH<span style="color:#f92672">=</span>arm
+            SUFFIX<span style="color:#f92672">=</span>-<span style="color:#e6db74">${</span>ARCH<span style="color:#e6db74">}</span>hf
+            ;;
+        *<span style="color:#f92672">)</span>
+            fatal <span style="color:#e6db74">&#34;Unsupported architecture </span>$ARCH<span style="color:#e6db74">&#34;</span>
+    <span style="color:#66d9ef">esac</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- verify existence of network downloader executable ---</span>
+verify_downloader<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e"># Return failure if it doesn&#39;t exist or is no executable</span>
+    <span style="color:#f92672">[</span> -x <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>which $1<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+
+    <span style="color:#75715e"># Set verified executable as our downloader program and return success</span>
+    DOWNLOADER<span style="color:#f92672">=</span>$1
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- create tempory directory and cleanup when done ---</span>
+setup_tmp<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    TMP_DIR<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>mktemp -d -t k3s-install.XXXXXXXXXX<span style="color:#66d9ef">)</span>
+    TMP_HASH<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>TMP_DIR<span style="color:#e6db74">}</span>/k3s.hash
+    TMP_BIN<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>TMP_DIR<span style="color:#e6db74">}</span>/k3s.bin
+    cleanup<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        code<span style="color:#f92672">=</span>$?
+        set +e
+        trap - EXIT
+        rm -rf <span style="color:#e6db74">${</span>TMP_DIR<span style="color:#e6db74">}</span>
+        exit $code
+    <span style="color:#f92672">}</span>
+    trap cleanup INT EXIT
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- use desired k3s version if defined or find version from channel ---</span>
+get_release_version<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_COMMIT<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        VERSION_K3S<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;commit </span><span style="color:#e6db74">${</span>INSTALL_K3S_COMMIT<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+    <span style="color:#66d9ef">elif</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_VERSION<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        VERSION_K3S<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>INSTALL_K3S_VERSION<span style="color:#e6db74">}</span>
+    <span style="color:#66d9ef">else</span>
+        info <span style="color:#e6db74">&#34;Finding release for channel </span><span style="color:#e6db74">${</span>INSTALL_K3S_CHANNEL<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+        version_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_CHANNEL_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">${</span>INSTALL_K3S_CHANNEL<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+        <span style="color:#66d9ef">case</span> $DOWNLOADER in
+            curl<span style="color:#f92672">)</span>
+                VERSION_K3S<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>curl -w <span style="color:#e6db74">&#39;%{url_effective}&#39;</span> -L -s -S <span style="color:#e6db74">${</span>version_url<span style="color:#e6db74">}</span> -o /dev/null | sed -e <span style="color:#e6db74">&#39;s|.*/||&#39;</span><span style="color:#66d9ef">)</span>
+                ;;
+            wget<span style="color:#f92672">)</span>
+                VERSION_K3S<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>wget -SqO /dev/null <span style="color:#e6db74">${</span>version_url<span style="color:#e6db74">}</span> 2&gt;&amp;<span style="color:#ae81ff">1</span> | grep -i Location | sed -e <span style="color:#e6db74">&#39;s|.*/||&#39;</span><span style="color:#66d9ef">)</span>
+                ;;
+            *<span style="color:#f92672">)</span>
+                fatal <span style="color:#e6db74">&#34;Incorrect downloader executable &#39;</span>$DOWNLOADER<span style="color:#e6db74">&#39;&#34;</span>
+                ;;
+        <span style="color:#66d9ef">esac</span>
+    <span style="color:#66d9ef">fi</span>
+    info <span style="color:#e6db74">&#34;Using </span><span style="color:#e6db74">${</span>VERSION_K3S<span style="color:#e6db74">}</span><span style="color:#e6db74"> as release&#34;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- download from github url ---</span>
+download<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">[</span> $# -eq <span style="color:#ae81ff">2</span> <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> fatal <span style="color:#e6db74">&#39;download needs exactly 2 arguments&#39;</span>
+
+    <span style="color:#66d9ef">case</span> $DOWNLOADER in
+        curl<span style="color:#f92672">)</span>
+            curl -o $1 -sfL $2
+            ;;
+        wget<span style="color:#f92672">)</span>
+            wget -qO $1 $2
+            ;;
+        *<span style="color:#f92672">)</span>
+            fatal <span style="color:#e6db74">&#34;Incorrect executable &#39;</span>$DOWNLOADER<span style="color:#e6db74">&#39;&#34;</span>
+            ;;
+    <span style="color:#66d9ef">esac</span>
+
+    <span style="color:#75715e"># Abort if download command failed</span>
+    <span style="color:#f92672">[</span> $? -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> fatal <span style="color:#e6db74">&#39;Download failed&#39;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- download hash from github url ---</span>
+download_hash<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_COMMIT<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        HASH_URL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>STORAGE_URL<span style="color:#e6db74">}</span>/k3s<span style="color:#e6db74">${</span>SUFFIX<span style="color:#e6db74">}</span>-<span style="color:#e6db74">${</span>INSTALL_K3S_COMMIT<span style="color:#e6db74">}</span>.sha256sum
+    <span style="color:#66d9ef">else</span>
+        HASH_URL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>GITHUB_URL<span style="color:#e6db74">}</span>/download/<span style="color:#e6db74">${</span>VERSION_K3S<span style="color:#e6db74">}</span>/sha256sum-<span style="color:#e6db74">${</span>ARCH<span style="color:#e6db74">}</span>.txt
+    <span style="color:#66d9ef">fi</span>
+    info <span style="color:#e6db74">&#34;Downloading hash </span><span style="color:#e6db74">${</span>HASH_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+    download <span style="color:#e6db74">${</span>TMP_HASH<span style="color:#e6db74">}</span> <span style="color:#e6db74">${</span>HASH_URL<span style="color:#e6db74">}</span>
+    HASH_EXPECTED<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>grep <span style="color:#e6db74">&#34; k3s</span><span style="color:#e6db74">${</span>SUFFIX<span style="color:#e6db74">}</span>$<span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">${</span>TMP_HASH<span style="color:#e6db74">}</span><span style="color:#66d9ef">)</span>
+    HASH_EXPECTED<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>HASH_EXPECTED%%[[:blank:]]*<span style="color:#e6db74">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- check hash against installed version ---</span>
+installed_hash_matches<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -x <span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span>/k3s <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        HASH_INSTALLED<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>sha256sum <span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span>/k3s<span style="color:#66d9ef">)</span>
+        HASH_INSTALLED<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>HASH_INSTALLED%%[[:blank:]]*<span style="color:#e6db74">}</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HASH_EXPECTED<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HASH_INSTALLED<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+            <span style="color:#66d9ef">return</span>
+        <span style="color:#66d9ef">fi</span>
+    <span style="color:#66d9ef">fi</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- download binary from github url ---</span>
+download_binary<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_COMMIT<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        BIN_URL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>STORAGE_URL<span style="color:#e6db74">}</span>/k3s<span style="color:#e6db74">${</span>SUFFIX<span style="color:#e6db74">}</span>-<span style="color:#e6db74">${</span>INSTALL_K3S_COMMIT<span style="color:#e6db74">}</span>
+    <span style="color:#66d9ef">else</span>
+        BIN_URL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>GITHUB_URL<span style="color:#e6db74">}</span>/download/<span style="color:#e6db74">${</span>VERSION_K3S<span style="color:#e6db74">}</span>/k3s<span style="color:#e6db74">${</span>SUFFIX<span style="color:#e6db74">}</span>
+    <span style="color:#66d9ef">fi</span>
+    info <span style="color:#e6db74">&#34;Downloading binary </span><span style="color:#e6db74">${</span>BIN_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+    download <span style="color:#e6db74">${</span>TMP_BIN<span style="color:#e6db74">}</span> <span style="color:#e6db74">${</span>BIN_URL<span style="color:#e6db74">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- verify downloaded binary hash ---</span>
+verify_binary<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    info <span style="color:#e6db74">&#34;Verifying binary download&#34;</span>
+    HASH_BIN<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>sha256sum <span style="color:#e6db74">${</span>TMP_BIN<span style="color:#e6db74">}</span><span style="color:#66d9ef">)</span>
+    HASH_BIN<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>HASH_BIN%%[[:blank:]]*<span style="color:#e6db74">}</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HASH_EXPECTED<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> !<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HASH_BIN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        fatal <span style="color:#e6db74">&#34;Download sha256 does not match </span><span style="color:#e6db74">${</span>HASH_EXPECTED<span style="color:#e6db74">}</span><span style="color:#e6db74">, got </span><span style="color:#e6db74">${</span>HASH_BIN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+    <span style="color:#66d9ef">fi</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- setup permissions and move binary to system directory ---</span>
+setup_binary<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    chmod <span style="color:#ae81ff">755</span> <span style="color:#e6db74">${</span>TMP_BIN<span style="color:#e6db74">}</span>
+    info <span style="color:#e6db74">&#34;Installing k3s to </span><span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/k3s&#34;</span>
+    $SUDO chown root:root <span style="color:#e6db74">${</span>TMP_BIN<span style="color:#e6db74">}</span>
+    $SUDO mv -f <span style="color:#e6db74">${</span>TMP_BIN<span style="color:#e6db74">}</span> <span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span>/k3s
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- setup selinux policy ---</span>
+setup_selinux<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">${</span>INSTALL_K3S_CHANNEL<span style="color:#e6db74">}</span> in 
+        *testing<span style="color:#f92672">)</span>
+            rpm_channel<span style="color:#f92672">=</span>testing
+            ;;
+        *latest<span style="color:#f92672">)</span>
+            rpm_channel<span style="color:#f92672">=</span>latest
+            ;;
+        *<span style="color:#f92672">)</span>
+            rpm_channel<span style="color:#f92672">=</span>stable
+            ;;
+    <span style="color:#66d9ef">esac</span>
+
+    rpm_site<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rpm.rancher.io&#34;</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>rpm_channel<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;testing&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        rpm_site<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rpm-testing.rancher.io&#34;</span>
+    <span style="color:#66d9ef">fi</span>
+
+    policy_hint<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;please install:
+</span><span style="color:#e6db74">    yum install -y container-selinux selinux-policy-base
+</span><span style="color:#e6db74">    yum install -y https://</span><span style="color:#e6db74">${</span>rpm_site<span style="color:#e6db74">}</span><span style="color:#e6db74">/k3s/</span><span style="color:#e6db74">${</span>rpm_channel<span style="color:#e6db74">}</span><span style="color:#e6db74">/common/centos/7/noarch/k3s-selinux-0.2-1.el7_8.noarch.rpm
+</span><span style="color:#e6db74">&#34;</span>
+    policy_error<span style="color:#f92672">=</span>fatal
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$INSTALL_K3S_SELINUX_WARN<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        policy_error<span style="color:#f92672">=</span>warn
+    <span style="color:#66d9ef">fi</span>
+
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$INSTALL_K3S_SKIP_SELINUX_RPM<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> can_skip_download; <span style="color:#66d9ef">then</span>
+        info <span style="color:#e6db74">&#34;Skipping installation of SELinux RPM&#34;</span>
+    <span style="color:#66d9ef">else</span>
+        install_selinux_rpm <span style="color:#e6db74">${</span>rpm_site<span style="color:#e6db74">}</span> <span style="color:#e6db74">${</span>rpm_channel<span style="color:#e6db74">}</span>
+    <span style="color:#66d9ef">fi</span>
+
+    <span style="color:#66d9ef">if</span> ! $SUDO chcon -u system_u -r object_r -t container_runtime_exec_t <span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span>/k3s &gt;/dev/null 2&gt;&amp;1; <span style="color:#66d9ef">then</span>
+        <span style="color:#66d9ef">if</span> $SUDO grep <span style="color:#e6db74">&#39;^\s*SELINUX=enforcing&#39;</span> /etc/selinux/config &gt;/dev/null 2&gt;&amp;1; <span style="color:#66d9ef">then</span>
+            $policy_error <span style="color:#e6db74">&#34;Failed to apply container_runtime_exec_t to </span><span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/k3s, </span><span style="color:#e6db74">${</span>policy_hint<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+        <span style="color:#66d9ef">fi</span>
+    <span style="color:#66d9ef">else</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> ! -f /usr/share/selinux/packages/k3s.pp <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+            $policy_error <span style="color:#e6db74">&#34;Failed to find the k3s-selinux policy, </span><span style="color:#e6db74">${</span>policy_hint<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+        <span style="color:#66d9ef">fi</span>
+    <span style="color:#66d9ef">fi</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- if on an el7/el8 system, install k3s-selinux</span>
+install_selinux_rpm<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -r /etc/redhat-release <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> <span style="color:#f92672">[</span> -r /etc/centos-release <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> <span style="color:#f92672">[</span> -r /etc/oracle-release <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        dist_version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>. /etc/os-release <span style="color:#f92672">&amp;&amp;</span> echo <span style="color:#e6db74">&#34;</span>$VERSION_ID<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+        maj_ver<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo <span style="color:#e6db74">&#34;</span>$dist_version<span style="color:#e6db74">&#34;</span> | sed -E -e <span style="color:#e6db74">&#34;s/^([0-9]+)\.?[0-9]*</span>$<span style="color:#e6db74">/\1/&#34;</span><span style="color:#66d9ef">)</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -r /etc/redhat-release <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">${</span>maj_ver<span style="color:#e6db74">}</span> in
+                7<span style="color:#f92672">)</span>
+                    $SUDO yum -y install yum-utils
+                    $SUDO yum-config-manager --enable rhel-7-server-extras-rpms
+                    ;;
+                8<span style="color:#f92672">)</span>
+                    :
+                    ;;
+                *<span style="color:#f92672">)</span>
+                    <span style="color:#66d9ef">return</span>
+                    ;;
+            <span style="color:#66d9ef">esac</span>
+        <span style="color:#66d9ef">fi</span>
+        $SUDO rm -f /etc/yum.repos.d/rancher-k3s-common*.repo
+        $SUDO tee /etc/yum.repos.d/rancher-k3s-common.repo &gt;/dev/null <span style="color:#e6db74">&lt;&lt; EOF
+</span><span style="color:#e6db74">[rancher-k3s-common-${2}]
+</span><span style="color:#e6db74">name=Rancher K3s Common (${2})
+</span><span style="color:#e6db74">baseurl=https://${1}/k3s/${2}/common/centos/${maj_ver}/noarch
+</span><span style="color:#e6db74">enabled=1
+</span><span style="color:#e6db74">gpgcheck=1
+</span><span style="color:#e6db74">gpgkey=https://${1}/public.key
+</span><span style="color:#e6db74">EOF</span>
+        $SUDO yum -y install <span style="color:#e6db74">&#34;k3s-selinux&#34;</span>
+    <span style="color:#66d9ef">fi</span>
+    <span style="color:#66d9ef">return</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- download and verify k3s ---</span>
+download_and_verify<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> can_skip_download; <span style="color:#66d9ef">then</span>
+       info <span style="color:#e6db74">&#39;Skipping k3s download and verify&#39;</span>
+       verify_k3s_is_executable
+       <span style="color:#66d9ef">return</span>
+    <span style="color:#66d9ef">fi</span>
+
+    setup_verify_arch
+    verify_downloader curl <span style="color:#f92672">||</span> verify_downloader wget <span style="color:#f92672">||</span> fatal <span style="color:#e6db74">&#39;Can not find curl or wget for downloading files&#39;</span>
+    setup_tmp
+    get_release_version
+    download_hash
+
+    <span style="color:#66d9ef">if</span> installed_hash_matches; <span style="color:#66d9ef">then</span>
+        info <span style="color:#e6db74">&#39;Skipping binary downloaded, installed k3s matches hash&#39;</span>
+        <span style="color:#66d9ef">return</span>
+    <span style="color:#66d9ef">fi</span>
+
+    download_binary
+    verify_binary
+    setup_binary
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- add additional utility links ---</span>
+create_symlinks<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_BIN_DIR_READ_ONLY<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span>
+    <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_SYMLINK<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> skip <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span>
+
+    <span style="color:#66d9ef">for</span> cmd in kubectl crictl ctr; <span style="color:#66d9ef">do</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> ! -e <span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span>/<span style="color:#e6db74">${</span>cmd<span style="color:#e6db74">}</span> <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_SYMLINK<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> force <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+            which_cmd<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>which <span style="color:#e6db74">${</span>cmd<span style="color:#e6db74">}</span> 2&gt;/dev/null <span style="color:#f92672">||</span> true<span style="color:#66d9ef">)</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>which_cmd<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">||</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_SYMLINK<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> force <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+                info <span style="color:#e6db74">&#34;Creating </span><span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">${</span>cmd<span style="color:#e6db74">}</span><span style="color:#e6db74"> symlink to k3s&#34;</span>
+                $SUDO ln -sf k3s <span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span>/<span style="color:#e6db74">${</span>cmd<span style="color:#e6db74">}</span>
+            <span style="color:#66d9ef">else</span>
+                info <span style="color:#e6db74">&#34;Skipping </span><span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">${</span>cmd<span style="color:#e6db74">}</span><span style="color:#e6db74"> symlink to k3s, command exists in PATH at </span><span style="color:#e6db74">${</span>which_cmd<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+            <span style="color:#66d9ef">fi</span>
+        <span style="color:#66d9ef">else</span>
+            info <span style="color:#e6db74">&#34;Skipping </span><span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">${</span>cmd<span style="color:#e6db74">}</span><span style="color:#e6db74"> symlink to k3s, already exists&#34;</span>
+        <span style="color:#66d9ef">fi</span>
+    <span style="color:#66d9ef">done</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- create killall script ---</span>
+create_killall<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_BIN_DIR_READ_ONLY<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span>
+    info <span style="color:#e6db74">&#34;Creating killall script </span><span style="color:#e6db74">${</span>KILLALL_K3S_SH<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+    $SUDO tee <span style="color:#e6db74">${</span>KILLALL_K3S_SH<span style="color:#e6db74">}</span> &gt;/dev/null <span style="color:#e6db74">&lt;&lt; \EOF
+</span><span style="color:#e6db74">#!/bin/sh
+</span><span style="color:#e6db74">[ $(id -u) -eq 0 ] || exec sudo $0 $@
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">for bin in /var/lib/rancher/k3s/data/**/bin/; do
+</span><span style="color:#e6db74">    [ -d $bin ] &amp;&amp; export PATH=$PATH:$bin:$bin/aux
+</span><span style="color:#e6db74">done
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">set -x
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">for service in /etc/systemd/system/k3s*.service; do
+</span><span style="color:#e6db74">    [ -s $service ] &amp;&amp; systemctl stop $(basename $service)
+</span><span style="color:#e6db74">done
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">for service in /etc/init.d/k3s*; do
+</span><span style="color:#e6db74">    [ -x $service ] &amp;&amp; $service stop
+</span><span style="color:#e6db74">done
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">pschildren() {
+</span><span style="color:#e6db74">    ps -e -o ppid= -o pid= | \
+</span><span style="color:#e6db74">    sed -e &#39;s/^\s*//g; s/\s\s*/\t/g;&#39; | \
+</span><span style="color:#e6db74">    grep -w &#34;^$1&#34; | \
+</span><span style="color:#e6db74">    cut -f2
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">pstree() {
+</span><span style="color:#e6db74">    for pid in $@; do
+</span><span style="color:#e6db74">        echo $pid
+</span><span style="color:#e6db74">        for child in $(pschildren $pid); do
+</span><span style="color:#e6db74">            pstree $child
+</span><span style="color:#e6db74">        done
+</span><span style="color:#e6db74">    done
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">killtree() {
+</span><span style="color:#e6db74">    kill -9 $(
+</span><span style="color:#e6db74">        { set +x; } 2&gt;/dev/null;
+</span><span style="color:#e6db74">        pstree $@;
+</span><span style="color:#e6db74">        set -x;
+</span><span style="color:#e6db74">    ) 2&gt;/dev/null
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">getshims() {
+</span><span style="color:#e6db74">    ps -e -o pid= -o args= | sed -e &#39;s/^ *//; s/\s\s*/\t/;&#39; | grep -w &#39;k3s/data/[^/]*/bin/containerd-shim&#39; | cut -f1
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">killtree $({ set +x; } 2&gt;/dev/null; getshims; set -x)
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">do_unmount() {
+</span><span style="color:#e6db74">    awk -v path=&#34;$1&#34; &#39;$2 ~ (&#34;^&#34; path) { print $2 }&#39; /proc/self/mounts | sort -r | xargs -r -t -n 1 umount
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">do_unmount &#39;/run/k3s&#39;
+</span><span style="color:#e6db74">do_unmount &#39;/var/lib/rancher/k3s&#39;
+</span><span style="color:#e6db74">do_unmount &#39;/var/lib/kubelet/pods&#39;
+</span><span style="color:#e6db74">do_unmount &#39;/run/netns/cni-&#39;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"># Delete network interface(s) that match &#39;master cni0&#39;
+</span><span style="color:#e6db74">ip link show 2&gt;/dev/null | grep &#39;master cni0&#39; | while read ignore iface ignore; do
+</span><span style="color:#e6db74">    iface=${iface%%@*}
+</span><span style="color:#e6db74">    [ -z &#34;$iface&#34; ] || ip link delete $iface
+</span><span style="color:#e6db74">done
+</span><span style="color:#e6db74">ip link delete cni0
+</span><span style="color:#e6db74">ip link delete flannel.1
+</span><span style="color:#e6db74">rm -rf /var/lib/cni/
+</span><span style="color:#e6db74">iptables-save | grep -v KUBE- | grep -v CNI- | iptables-restore
+</span><span style="color:#e6db74">EOF</span>
+    $SUDO chmod <span style="color:#ae81ff">755</span> <span style="color:#e6db74">${</span>KILLALL_K3S_SH<span style="color:#e6db74">}</span>
+    $SUDO chown root:root <span style="color:#e6db74">${</span>KILLALL_K3S_SH<span style="color:#e6db74">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- create uninstall script ---</span>
+create_uninstall<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_BIN_DIR_READ_ONLY<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span>
+    info <span style="color:#e6db74">&#34;Creating uninstall script </span><span style="color:#e6db74">${</span>UNINSTALL_K3S_SH<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+    $SUDO tee <span style="color:#e6db74">${</span>UNINSTALL_K3S_SH<span style="color:#e6db74">}</span> &gt;/dev/null <span style="color:#e6db74">&lt;&lt; EOF
+</span><span style="color:#e6db74">#!/bin/sh
+</span><span style="color:#e6db74">set -x
+</span><span style="color:#e6db74">[ \$(id -u) -eq 0 ] || exec sudo \$0 \$@
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">${KILLALL_K3S_SH}
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">if which systemctl; then
+</span><span style="color:#e6db74">    systemctl disable ${SYSTEM_NAME}
+</span><span style="color:#e6db74">    systemctl reset-failed ${SYSTEM_NAME}
+</span><span style="color:#e6db74">    systemctl daemon-reload
+</span><span style="color:#e6db74">fi
+</span><span style="color:#e6db74">if which rc-update; then
+</span><span style="color:#e6db74">    rc-update delete ${SYSTEM_NAME} default
+</span><span style="color:#e6db74">fi
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">rm -f ${FILE_K3S_SERVICE}
+</span><span style="color:#e6db74">rm -f ${FILE_K3S_ENV}
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">remove_uninstall() {
+</span><span style="color:#e6db74">    rm -f ${UNINSTALL_K3S_SH}
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">trap remove_uninstall EXIT
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">if (ls ${SYSTEMD_DIR}/k3s*.service || ls /etc/init.d/k3s*) &gt;/dev/null 2&gt;&amp;1; then
+</span><span style="color:#e6db74">    set +x; echo &#39;Additional k3s services installed, skipping uninstall of k3s&#39;; set -x
+</span><span style="color:#e6db74">    exit
+</span><span style="color:#e6db74">fi
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">for cmd in kubectl crictl ctr; do
+</span><span style="color:#e6db74">    if [ -L ${BIN_DIR}/\$cmd ]; then
+</span><span style="color:#e6db74">        rm -f ${BIN_DIR}/\$cmd
+</span><span style="color:#e6db74">    fi
+</span><span style="color:#e6db74">done
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">rm -rf /etc/rancher/k3s
+</span><span style="color:#e6db74">rm -rf /run/k3s
+</span><span style="color:#e6db74">rm -rf /run/flannel
+</span><span style="color:#e6db74">rm -rf /var/lib/rancher/k3s
+</span><span style="color:#e6db74">rm -rf /var/lib/kubelet
+</span><span style="color:#e6db74">rm -f ${BIN_DIR}/k3s
+</span><span style="color:#e6db74">rm -f ${KILLALL_K3S_SH}
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">if type yum &gt;/dev/null 2&gt;&amp;1; then
+</span><span style="color:#e6db74">    yum remove -y k3s-selinux
+</span><span style="color:#e6db74">    rm -f /etc/yum.repos.d/rancher-k3s-common*.repo
+</span><span style="color:#e6db74">fi
+</span><span style="color:#e6db74">EOF</span>
+    $SUDO chmod <span style="color:#ae81ff">755</span> <span style="color:#e6db74">${</span>UNINSTALL_K3S_SH<span style="color:#e6db74">}</span>
+    $SUDO chown root:root <span style="color:#e6db74">${</span>UNINSTALL_K3S_SH<span style="color:#e6db74">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- disable current service if loaded --</span>
+systemd_disable<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    $SUDO rm -f /etc/systemd/system/<span style="color:#e6db74">${</span>SERVICE_K3S<span style="color:#e6db74">}</span> <span style="color:#f92672">||</span> true
+    $SUDO rm -f /etc/systemd/system/<span style="color:#e6db74">${</span>SERVICE_K3S<span style="color:#e6db74">}</span>.env <span style="color:#f92672">||</span> true
+    $SUDO systemctl disable <span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span> &gt;/dev/null 2&gt;&amp;<span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> true
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- capture current env and create file containing k3s_ variables ---</span>
+create_env_file<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    info <span style="color:#e6db74">&#34;env: Creating environment file </span><span style="color:#e6db74">${</span>FILE_K3S_ENV<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+    UMASK<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>umask<span style="color:#66d9ef">)</span>
+    umask <span style="color:#ae81ff">0377</span>
+    env | grep <span style="color:#e6db74">&#39;^K3S_&#39;</span> | $SUDO tee <span style="color:#e6db74">${</span>FILE_K3S_ENV<span style="color:#e6db74">}</span> &gt;/dev/null
+    env | egrep -i <span style="color:#e6db74">&#39;^(NO|HTTP|HTTPS)_PROXY&#39;</span> | $SUDO tee -a <span style="color:#e6db74">${</span>FILE_K3S_ENV<span style="color:#e6db74">}</span> &gt;/dev/null
+    umask $UMASK
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- write systemd service file ---</span>
+create_systemd_service_file<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    info <span style="color:#e6db74">&#34;systemd: Creating service file </span><span style="color:#e6db74">${</span>FILE_K3S_SERVICE<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+    $SUDO tee <span style="color:#e6db74">${</span>FILE_K3S_SERVICE<span style="color:#e6db74">}</span> &gt;/dev/null <span style="color:#e6db74">&lt;&lt; EOF
+</span><span style="color:#e6db74">[Unit]
+</span><span style="color:#e6db74">Description=Lightweight Kubernetes
+</span><span style="color:#e6db74">Documentation=https://k3s.io
+</span><span style="color:#e6db74">Wants=network-online.target
+</span><span style="color:#e6db74">After=network-online.target
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">[Install]
+</span><span style="color:#e6db74">WantedBy=multi-user.target
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">[Service]
+</span><span style="color:#e6db74">Type=${SYSTEMD_TYPE}
+</span><span style="color:#e6db74">EnvironmentFile=${FILE_K3S_ENV}
+</span><span style="color:#e6db74">KillMode=process
+</span><span style="color:#e6db74">Delegate=yes
+</span><span style="color:#e6db74"># Having non-zero Limit*s causes performance problems due to accounting overhead
+</span><span style="color:#e6db74"># in the kernel. We recommend using cgroups to do container-local accounting.
+</span><span style="color:#e6db74">LimitNOFILE=1048576
+</span><span style="color:#e6db74">LimitNPROC=infinity
+</span><span style="color:#e6db74">LimitCORE=infinity
+</span><span style="color:#e6db74">TasksMax=infinity
+</span><span style="color:#e6db74">TimeoutStartSec=0
+</span><span style="color:#e6db74">Restart=always
+</span><span style="color:#e6db74">RestartSec=5s
+</span><span style="color:#e6db74">ExecStartPre=-/sbin/modprobe br_netfilter
+</span><span style="color:#e6db74">ExecStartPre=-/sbin/modprobe overlay
+</span><span style="color:#e6db74">ExecStart=${BIN_DIR}/k3s \\
+</span><span style="color:#e6db74">    ${CMD_K3S_EXEC}
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">EOF</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- write openrc service file ---</span>
+create_openrc_service_file<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    LOG_FILE<span style="color:#f92672">=</span>/var/log/<span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span>.log
+
+    info <span style="color:#e6db74">&#34;openrc: Creating service file </span><span style="color:#e6db74">${</span>FILE_K3S_SERVICE<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+    $SUDO tee <span style="color:#e6db74">${</span>FILE_K3S_SERVICE<span style="color:#e6db74">}</span> &gt;/dev/null <span style="color:#e6db74">&lt;&lt; EOF
+</span><span style="color:#e6db74">#!/sbin/openrc-run
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">depend() {
+</span><span style="color:#e6db74">    after network-online
+</span><span style="color:#e6db74">    want cgroups
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">start_pre() {
+</span><span style="color:#e6db74">    rm -f /tmp/k3s.*
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">supervisor=supervise-daemon
+</span><span style="color:#e6db74">name=${SYSTEM_NAME}
+</span><span style="color:#e6db74">command=&#34;${BIN_DIR}/k3s&#34;
+</span><span style="color:#e6db74">command_args=&#34;$(escape_dq &#34;${CMD_K3S_EXEC}&#34;)
+</span><span style="color:#e6db74">    &gt;&gt;${LOG_FILE} 2&gt;&amp;1&#34;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">output_log=${LOG_FILE}
+</span><span style="color:#e6db74">error_log=${LOG_FILE}
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">pidfile=&#34;/var/run/${SYSTEM_NAME}.pid&#34;
+</span><span style="color:#e6db74">respawn_delay=5
+</span><span style="color:#e6db74">respawn_max=0
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">set -o allexport
+</span><span style="color:#e6db74">if [ -f /etc/environment ]; then source /etc/environment; fi
+</span><span style="color:#e6db74">if [ -f ${FILE_K3S_ENV} ]; then source ${FILE_K3S_ENV}; fi
+</span><span style="color:#e6db74">set +o allexport
+</span><span style="color:#e6db74">EOF</span>
+    $SUDO chmod <span style="color:#ae81ff">0755</span> <span style="color:#e6db74">${</span>FILE_K3S_SERVICE<span style="color:#e6db74">}</span>
+
+    $SUDO tee /etc/logrotate.d/<span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span> &gt;/dev/null <span style="color:#e6db74">&lt;&lt; EOF
+</span><span style="color:#e6db74">${LOG_FILE} {
+</span><span style="color:#e6db74">	missingok
+</span><span style="color:#e6db74">	notifempty
+</span><span style="color:#e6db74">	copytruncate
+</span><span style="color:#e6db74">}
+</span><span style="color:#e6db74">EOF</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- write systemd or openrc service file ---</span>
+create_service_file<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HAS_SYSTEMD<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> create_systemd_service_file
+    <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HAS_OPENRC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> create_openrc_service_file
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- get hashes of the current k3s bin and service files</span>
+get_installed_hashes<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    $SUDO sha256sum <span style="color:#e6db74">${</span>BIN_DIR<span style="color:#e6db74">}</span>/k3s <span style="color:#e6db74">${</span>FILE_K3S_SERVICE<span style="color:#e6db74">}</span> <span style="color:#e6db74">${</span>FILE_K3S_ENV<span style="color:#e6db74">}</span> 2&gt;&amp;<span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> true
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- enable and start systemd service ---</span>
+systemd_enable<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    info <span style="color:#e6db74">&#34;systemd: Enabling </span><span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span><span style="color:#e6db74"> unit&#34;</span>
+    $SUDO systemctl enable <span style="color:#e6db74">${</span>FILE_K3S_SERVICE<span style="color:#e6db74">}</span> &gt;/dev/null
+    $SUDO systemctl daemon-reload &gt;/dev/null
+<span style="color:#f92672">}</span>
+
+systemd_start<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    info <span style="color:#e6db74">&#34;systemd: Starting </span><span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+    $SUDO systemctl restart <span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- enable and start openrc service ---</span>
+openrc_enable<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    info <span style="color:#e6db74">&#34;openrc: Enabling </span><span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span><span style="color:#e6db74"> service for default runlevel&#34;</span>
+    $SUDO rc-update add <span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span> default &gt;/dev/null
+<span style="color:#f92672">}</span>
+
+openrc_start<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    info <span style="color:#e6db74">&#34;openrc: Starting </span><span style="color:#e6db74">${</span>SYSTEM_NAME<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+    $SUDO <span style="color:#e6db74">${</span>FILE_K3S_SERVICE<span style="color:#e6db74">}</span> restart
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- startup systemd or openrc service ---</span>
+service_enable_and_start<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_SKIP_ENABLE<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span>
+
+    <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HAS_SYSTEMD<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> systemd_enable
+    <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HAS_OPENRC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> openrc_enable
+
+    <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_SKIP_START<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">return</span>
+
+    POST_INSTALL_HASHES<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>get_installed_hashes<span style="color:#66d9ef">)</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>PRE_INSTALL_HASHES<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>POST_INSTALL_HASHES<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        info <span style="color:#e6db74">&#39;No change detected so skipping service start&#39;</span>
+        <span style="color:#66d9ef">return</span>
+    <span style="color:#66d9ef">fi</span>
+
+    <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HAS_SYSTEMD<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> systemd_start
+    <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HAS_OPENRC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> true <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> openrc_start
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># --- re-evaluate args to include env command ---</span>
+eval set -- <span style="color:#66d9ef">$(</span>escape <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INSTALL_K3S_EXEC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span> <span style="color:#66d9ef">$(</span>quote <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span>
+
+<span style="color:#75715e"># --- run the install process --</span>
+<span style="color:#f92672">{</span>
+    verify_system
+    setup_env <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span>
+    download_and_verify
+    setup_selinux
+    create_symlinks
+    create_killall
+    create_uninstall
+    systemd_disable
+    create_env_file
+    create_service_file
+    service_enable_and_start
+<span style="color:#f92672">}</span>
+
+</code></pre></div><div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="" >
+    &copy;  kaifalu 2021 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+<a href="https://github.com/bitmyth" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="../../dist/js/app.3fc0f988d21662902933.js"></script>
+  
+  <script>
+      (function(f, a, t, h, o, m){
+          a[h]=a[h]||function(){
+              (a[h].q=a[h].q||[]).push(arguments)
+          };
+          o=f.createElement('script'),
+              m=f.getElementsByTagName('script')[0];
+          o.async=1; o.src=t; o.id='fathom-script';
+          m.parentNode.insertBefore(o,m)
+      })(document, window, '//fathom.kaifalu.com/tracker.js', 'fathom');
+      fathom('set', 'siteId', 'LBOPO');
+      fathom('trackPageview');
+  </script>
+  
+
+
+  </body>
+</html>
