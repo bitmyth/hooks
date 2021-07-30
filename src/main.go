@@ -8,16 +8,19 @@ import (
     "hook/src/load"
     "log"
     "net/http"
+    _ "net/http/pprof"
     "os"
+    "os/signal"
+    "syscall"
 )
 
 var jobs *job.Jobs
 
 func main() {
-    file := os.Getenv("FILE")
+    file := load.Default(os.Getenv("FILE"), "jobs.yaml")
     port := load.Default(os.Getenv("PORT"), "8000")
 
-    data := load.Load(file)
+    data := load.Load(file.(string))
 
     err := yaml.Unmarshal([]byte(data), &jobs)
     if err != nil {
@@ -32,5 +35,17 @@ func main() {
         http.HandleFunc(job.Url, handler)
     }
 
-    log.Fatal(http.ListenAndServe(fmt.Sprintf("0.0.0.0:%s", port), nil))
+    go func() {
+        _, _ = os.Stdout.Write([]byte(fmt.Sprintf("Server listen on port %s\n", port)))
+        if err := http.ListenAndServe(fmt.Sprintf("0.0.0.0:%s", port), nil); err != nil && err != http.ErrServerClosed {
+            log.Fatalf("listen: %s\n", err)
+        }
+        //log.Fatal(http.ListenAndServe(fmt.Sprintf("0.0.0.0:%s", port), nil))
+    }()
+
+    quit := make(chan os.Signal)
+    signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+    <-quit
+    log.Println("Shutdown Server ...")
+
 }

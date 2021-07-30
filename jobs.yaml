@@ -4,4 +4,5 @@ jobs:
     command: [echo,1,33,2,5]
   - name: test2
     url: /test2
-    command: [touch,test2.txt]
+    workdir: /Users/gsh/projects/kaifalu.com
+    command: [hugo]
