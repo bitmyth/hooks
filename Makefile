@@ -4,6 +4,9 @@ IMAGE := bitmyth/hooks
 image:
 	docker build -t $(IMAGE) .
 
+image-prod:
+	docker build -f Dockerfile.multi -t $(IMAGE) .
+
 ## Run Docker production image
 run-prod:
 	docker run --rm --name hooks -p 8000:8000 -e FILE=jobs.yaml $(IMAGE)
