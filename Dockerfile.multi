@@ -1,11 +1,11 @@
-FROM golang:1.16-alpine
+FROM golang:1.16-alpine AS build-stage
 
 RUN apk --update upgrade \
     && apk --no-cache --no-progress add git mercurial bash gcc musl-dev curl tar ca-certificates tzdata \
     && update-ca-certificates \
     && rm -rf /var/cache/apk/*
 
-WORKDIR /go/src/github.com/bitmyth/hooks
+WORKDIR /app
 
 COPY go.mod .
 COPY go.sum .
@@ -13,16 +13,11 @@ RUN GO111MODULE=on GOPROXY=https://goproxy.cn go mod download
 
 COPY . .
 
-#EXPOSE 8000
-#CMD exec go run src/main.go
-
 RUN script/make.sh
 
 
-FROM golang:1.16-alpine
-#FROM scratch
-COPY dist/qshell /bin
+FROM scratch
 COPY --from=build-stage /app/dist/app /
-WORKDIR /
+COPY --from=build-stage /app/jobs.yaml /
 EXPOSE 8000
 ENTRYPOINT ["/app"]
